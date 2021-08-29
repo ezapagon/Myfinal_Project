@@ -4,17 +4,17 @@ from flask import Flask, render_template, redirect, url_for, request
 #Standard Imports
 import pandas as pd
 import numpy as np
-import seaborn as sns
-import matplotlib.pyplot as plt
-import time as time
+#import seaborn as sns
+#import matplotlib.pyplot as plt
+#import time as time
 #Modelling Imports
 from sklearn.preprocessing import StandardScaler, MinMaxScaler 
 from sklearn.model_selection import train_test_split, cross_val_score 
 from sklearn.linear_model import LinearRegression
 from sklearn import linear_model
 from sklearn import metrics
-import xgboost as xgb
-from xgboost import plot_importance
+#import xgboost as xgb
+#from xgboost import plot_importance
 from sklearn.metrics import explained_variance_score, mean_squared_error, r2_score
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.metrics import mean_squared_error
@@ -27,7 +27,7 @@ app = Flask(__name__)
 @app.route("/",methods=['GET','POST'])
 def model():
     #Import csv to fit
-    final_df = pd.read_csv('C:/Users/Juan Fracisco/Desktop/Final_project/Resources/listings_cleaned.csv')
+    final_df = pd.read_csv('/Resources/listings_cleaned.csv')
     #Take away bathrooms text
     final_df['bathrooms_text'] = final_df['bathrooms_text'].str.replace('[a-zA-Z- ]', '')
     final_df['bathrooms_text'] = pd.to_numeric(final_df['bathrooms_text'])
