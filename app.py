@@ -24,14 +24,14 @@ from sklearn.metrics import mean_squared_error
 app = Flask(__name__)
 
 ##define the methods to calculate everything based on entries give
-@app.route( "/", methods=['POST'])
+@app.route( "/", methods=['GET', 'POST'])
 def model():
     #Import csv to fit
     final_df = pd.read_csv('Resources/listings_cleaned.csv')
     #Take away bathrooms text
-    final_df['bathrooms_text'] = final_df['bathrooms_text'].str.replace('[a-zA-Z- ]', '')
-    final_df['bathrooms_text'] = pd.to_numeric(final_df['bathrooms_text'])
-    final_df['bathrooms_text'].unique()
+    #final_df['bathrooms_text'] = final_df['bathrooms_text'].str.replace('[a-zA-Z- ]', '')
+    #final_df['bathrooms_text'] = pd.to_numeric(final_df['bathrooms_text'])
+    #final_df['bathrooms_text'].unique()
     #Dropping columns that cause issues in simulation
     final_df = final_df.drop(['time_since_first_review','time_since_last_review','host_since','review_scores_accuracy','first_review','id'],axis=1)
     dummy_df = pd.get_dummies(final_df)
