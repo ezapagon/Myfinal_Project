@@ -41,6 +41,9 @@
       margin-left: auto;
 
     }
+    #bar1{
+      width: 86.15%;
+    }
   </style>
 
   <!-- boostrap CSS -->
@@ -55,16 +58,13 @@
   <!-- d3 JavaScript -->
   <script src="https://d3js.org/d3.v5.min.js"></script>
 
-  <!-- Our CSS -->
-  <link rel="stylesheet" type="text/css" href="static/css/style.css">
-
 </head>
 
 <body>
 
   <div class="container">
     <div class='row'>
-      <div id='jumbotron' class="col-md-12 jumbotron text-center">
+      <div id='jumbotron' class="col-md- jumbotron text-center">
         <img src="https://github.com/D4n13l-50L/Final_project/blob/main/templates/images/airbnb.PNG?raw=true"
           style="height:250px">
       </div>
@@ -102,21 +102,30 @@
       <div id="map" class="col-md-6"></div>
       <div id="forms" class="col-md-6">
         <form action="/" method="post">
-          <input type="text" placeholder="parking" name="parking" value={{request.form.parking}}>
-          <input type="text" placeholder="tv" name="tv" value={{request.form.tv}}>
+
+          <b>Parking:</b><input type="text" placeholder="0" name="parking" style="float: right;" value={{request.form.parking}}>
           <br>
           <br>
-          <input type="text" placeholder="beds" name="beds" value={{request.form.beds}}>
-          <input type="text" placeholder="bedrooms" name="bedrooms" value={{request.form.bedrooms}}>
+          <b>Tvs: </b><input type="text" placeholder="0" name="tv" style="float: right;" value={{request.form.tv}}>
           <br>
           <br>
-          <input type="text" placeholder="gyms" name="gyms" value={{request.form.gyms}}>
-          <input type="text" placeholder="maximum_nights" name="maximum_nights" value={{request.form.maximum_nights}}>
+          <b>Beds: </b><input type="text" placeholder="0" name="beds" style="float: right;" value={{request.form.beds}}>
           <br>
           <br>
-          <input type="text" placeholder="accommodates" name="accommodates" value={{request.form.accommodates}}>
-          <input type="text" placeholder="air_conditioning" name="air_conditioning"
-            value={{request.form.air_conditioning}}>
+          <b>Bedrooms: </b><input type="text" placeholder="0" name="bedrooms" style="float: right;" value={{request.form.bedrooms}}>
+          <br>
+          <br>
+          <b>Gyms: </b><input type="text" placeholder="0" name="gyms" style="float: right;" value={{request.form.gyms}}>
+          <br>
+          <br>
+          <b>Maximum Nights: </b><input type="text" placeholder="0" name="maximum_nights" style="float: right;" value={{request.form.maximum_nights}}>
+          <br>
+          <br>
+          <b>Accommodates: </b><input type="text" placeholder="0" name="accommodates" style="float: right;" value={{request.form.accommodates}}>
+          <br>
+          <br>
+          <b>Air conditioning: </b><input type="text" placeholder="0" name="air_conditioning"
+          style="float: right;" value={{request.form.air_conditioning}}>
           <br>
           <br>
           <input type="submit" value="Submit">
@@ -125,13 +134,10 @@
         <b>Calculate the price of your airbnb: </b>${{text}}
         <br>
         <br>
-        <br>
-        <br>
-        <br>
         <b>Display data about alcaldia</b>
         <select id="myList" onchange="favTutorial()">
           <option> ---Choose an alcaldia--- </option>
-          <option> CUAUHTEMOC </option>
+          <option selected="selected"> CUAUHTEMOC </option>
           <option> MIGUEL HIDALGO </option>
           <option> IZTAPALAPA </option>
           <option> AZCAPOTZALCO </option>
@@ -164,15 +170,24 @@
 
     <div class="row">
       <div class="col-md-6">
-        <img id='img3'
+        <img id='img3' style="width: 500px;"
           src="https://github.com/D4n13l-50L/Final_project/blob/main/Resources/Graphs%20and%20tables/prices%20by%20alcaldia.png?raw=true">
       </div>
       <div class="col-md-5"
         style='background-image: url("https://images.unsplash.com/photo-1557682224-5b8590cd9ec5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8OXx8fGVufDB8fHx8&w=1000&q=80")'>
-        <img id='img1'>
+        <img id='img1' style="width: 500px;" src="https://github.com/D4n13l-50L/Final_project/blob/main/Resources/Worldcloud/worldcloud_Cuah.png?raw=true" style="width: 400;">
       </div>
 
     </div>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/d3-array.v2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"></script>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+      integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+      crossorigin=""></script>
     <script>
       // API key
       const API_KEY = "pk.eyJ1Ijoic2Ntby11cHMiLCJhIjoiY2txc295ejFoMXphczJxc2JkcDR0MTlwNCJ9.v-6VYAXI_ZfI7oq0OcXdgw";
@@ -203,7 +218,7 @@
         var myalcaldia = mylist.options[mylist.selectedIndex].text;
         d3.selectAll("#img1")
           .attr("src", repository[myalcaldia][0])
-          .attr("width", 400)
+          .attr("width", 500)
           .attr("height", 350);
         d3.selectAll("#img2")
           .attr("src", "https://github.com/D4n13l-50L/Final_project/blob/main/Resources/Graphs%20and%20tables/prices%20by%20alcaldia.png?raw=true")
@@ -214,10 +229,7 @@
     <script>
       // map
 
-      var myMap = L.map("map", {
-        center: [19.424135, -99.067266],
-        zoom: 11
-      });
+      var myMap = L.map("map", {center: [19.424135, -99.067266],zoom: 11});
 
       // tile layer
 
@@ -231,7 +243,7 @@
       }).addTo(myMap);
 
       // Use this link to get the geojson data.
-      var link = "static/data/sectores.geojson";
+      var link = "https://raw.githubusercontent.com/ezapagon/Myfinal_Project/main/templates/static/data/sectores.geojson";
 
       // Function that will determine the color of a neighborhood based on the delegacion it belongs to
       function chooseColor(ddelegacion) {
@@ -352,19 +364,6 @@
 
 
 
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script src="https://d3js.org/d3-array.v2.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"></script>
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
-      integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
-      crossorigin=""></script>
-    <!-- API key -->
-    <script type="text/javascript" src="static/js/config.js"></script>
-    <!-- JS  -->
-    <script type="text/javascript" src="static/js/geo.js"></script>
 
 </body>
 
